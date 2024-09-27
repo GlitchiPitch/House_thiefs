@@ -1,23 +1,22 @@
 local teams = game:GetService('Teams')
 local players = game.Players
+local replicatedFirst = game:GetService('ReplicatedFirst')
 
-local teamList: {[string]: {color: BrickColor}} = {
-    red = {color = BrickColor.palette(12)},
-    blue = {color = BrickColor.palette(13)}
-}
 
-function createTeams()
-    for teamName, _team in teamList do
-        local team = Instance.new('Team')
-        team.Parent = teams
-        team.TeamColor = _team.color
-        team.Name = teamName
-    end
+function createStartingGui()
+
+    local tempButton: ImageButton = Instance.new("TextButton")
+    local gui: ScreenGui = Instance.new('ScreenGui')
+    gui.Name = 'TestGui'
+    tempButton.Parent = gui
+    
+
+    gui.Parent = replicatedFirst:FindFirstChild('First'):FindFirstChild('StartingMenu')
 end
 
 function setup()
     players.CharacterAutoLoads = false    
-    createTeams()
+    createStartingGui()
 end
 
 function init()
